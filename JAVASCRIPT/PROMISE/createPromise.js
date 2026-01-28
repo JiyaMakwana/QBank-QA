@@ -50,7 +50,37 @@ let myPromise = () => {
     });
 }
 
-
 myPromise().then(res=>console.log(res))
 .catch(err=>console.log(err))
 .finally(()=>console.log("Finished"));
+
+// ✅ Task 1
+// Delay message 3 seconds
+// Output: "Hello after 3s"
+const task1promise=new Promise((resolve,reject)=> {
+    let success=false;
+    setTimeout(() => {
+        if(success)
+        {
+            resolve("Hello after 3s");
+        }else{
+            reject("error")
+        }
+    },3000);
+});
+
+task1promise.then(res=>console.log(res))
+.catch((err)=> console.log(err));
+
+// Create promise that returns square of number after 1s
+function square(num)
+{
+    return new Promise((resolve,reject) => {
+        let sq=num*num;
+        setTimeout(() => {
+            resolve(`Square is:: ${sq}`);
+        },1000);
+    });
+}
+square(2).then(res=>console.log(res))
+.catch(()=>console.log("error"));
