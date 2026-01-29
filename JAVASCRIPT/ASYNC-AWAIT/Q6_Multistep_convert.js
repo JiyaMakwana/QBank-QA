@@ -7,6 +7,7 @@
 // 👉 3 awaits
 function step1()
 {
+    //async or this way both are correct
     return Promise.resolve("Hello");
 }
 async function step2(step)
