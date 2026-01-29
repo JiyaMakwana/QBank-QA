@@ -119,4 +119,28 @@ function reduce8(arr)
     } ,0);
     return accCount;
 }
-console.log(reduce8([1,1,2,3,1,2,4]));
+// console.log(reduce8([1,1,2,3,1,2,4]));
+
+// Using reduce, calculate the average.
+function reduce9(arr){
+    let sum=arr.reduce((accBook,currValue)=>{ 
+        return accBook+currValue;
+    },0);
+    
+    return sum/arr.length;
+}
+console.log(reduce9([2, 4, 6, 8]));
+
+// Using reduce, return a new array containing numbers greater than 4.
+//initial=[]
+function reduce10(arr)
+{
+    let newArr=arr.reduce((acc,currVal)=> {
+        if( currVal >=4) acc.push(currVal);
+        return acc;
+    },[]);
+    return newArr;
+}
+console.log(reduce10([1, 3, 5, 7, 9]));
+
+// 
