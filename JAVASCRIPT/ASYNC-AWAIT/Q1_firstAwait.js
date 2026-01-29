@@ -1,8 +1,7 @@
 // Create fakeApi() that resolves "Hello" after 1s.
 // Using async/await print:
 
-function fakeApi()
-{
+function fakeApi() {
     return new Promise((resolve)=>{
         setTimeout(()=>{
             resolve("Hello");
