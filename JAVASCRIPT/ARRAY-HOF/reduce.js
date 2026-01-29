@@ -143,4 +143,28 @@ function reduce10(arr)
 }
 console.log(reduce10([1, 3, 5, 7, 9]));
 
-// 
+// Using reduce, return:
+// [
+//   {status:"success"},
+//   {status:"failed"},
+//   {status:"success"}
+// ]
+
+// output=> { success: 2, failed: 1 }
+function reduce11(arr)
+{
+    // let output=arr.reduce((acc,currVal)=>{
+    //     if(currVal.status==="success") acc["success"]++;
+    //     if(currVal.status==="failed") acc["failed"]++;
+    //     return acc;
+    // },{success:0, failed:0});
+    // return output;
+
+    return arr.reduce((acc,curr)=>{
+        acc[curr.status]=(acc[curr.status] || 0) + 1;
+        return acc;
+    },{})
+}
+console.log(reduce11([{status:"success"},
+  {status:"failed"},
+  {status:"success"}]));
