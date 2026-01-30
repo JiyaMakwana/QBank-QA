@@ -1,14 +1,11 @@
-// Q6 — One fails
+// Q7 — Safe wrapper
 
-// Make:
-// api1 → success
-// api2 → reject
-// api3 → success
+// Create:
+// async function safeLoad()
 
-// Using Promise.all inside try/catch:
-// If any fails:
-// "Failed to load data"
-// 👉 Understand: ONE failure → all fail
+// It should:
+// try Promise.all
+// return data OR "Error"
 async function api1() {
     return "success";
 }
