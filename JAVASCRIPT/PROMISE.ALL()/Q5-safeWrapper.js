@@ -16,12 +16,16 @@ async function api3() {
     return "success";
 }
 
-async function load() {
+async function safeLoad() {
     try {
         let [a1,a2,a3]=await Promise.all([api1(), api2(), api3()]);
-        console.log(a1,a2,a3);
+        return (a1,a2,a3);
     } catch (error) {
-        console.log("Failed to Load Data");
+        return "Failed to Load Data";
     }
+}
+async function load() {
+    let data=await safeLoad();
+    console.log(data);
 }
 load();
