@@ -20,7 +20,7 @@ async function multiply(num) {
 async function load() {
     let nums=await getNumbers();
 
-    let result= await Promise.all(nums.map(multiply()));
+    let result= await Promise.all(nums.map(multiply));
     console.log(result);
 }
 load();
