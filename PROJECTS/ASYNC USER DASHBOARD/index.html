@@ -46,7 +46,7 @@
                         <nav>
                             <div>
                                 <h2>User Posts</h2>
-                                <button>Add New Post</button>
+                                <button id="postBTN">Add New Post</button>
                             </div>
                         </nav>
                         
@@ -54,13 +54,16 @@
                             <div class="user-cards">
                                 <div class="user-cards-grid">
                                     <div class="user-box1">
-                                        <div class="loading-content">
-                                            <div>⌛Loading</div>
+
+                                        <div class="loading-content" id="loadDiv">
+                                             <!--JS will touch ONLY this.-->
+                                            <div id="statusDiv"></div>   <!-- loading / error -->
                                         </div>
                                         
                                         <div class="text-content">
-                                            <div class="user-post-title">Post Title</div>
-                                            <div class="user-post-text">Post body text here..</div>
+                                            <!-- <div class="user-post-title"></div> JS will touch ONLY this. -->
+                                            <!-- <div class="user-post-text"></div> JS will touch ONLY this. -->
+                                            <div id="postsContainer"></div> <!-- posts render here -->
                                         </div>
                                     </div>
                                 </div>
@@ -79,29 +82,13 @@
                             
                             <div class="completed-checklist">
                                 <h3>Completed</h3>
-                                <div>
-                                    <input type="checkbox" name="task1" id="">
-                                    <label for="task1"> Task 1 </label><br>
-
-                                    <input type="checkbox" name="task2" id="">
-                                    <label for="task2"> Task 2 </label><br>
-
-                                    <input type="checkbox" name="task3" id="">
-                                    <label for="task3"> Task 3 </label><br>
-                                </div>
+                                <div id="LoadToDoError"></div>
+                                <div id="completedToDO"></div>
                             </div>
                             <hr>
                             <div class="pending-checklist">
                                 <h3>Pending</h3>
-                                <div>
-                                    <input type="checkbox" name="task4" id="">
-                                    <label for="task4"> Task 4 </label><br>
-
-                                    <input type="checkbox" name="task5" id="">
-                                    <label for="task5"> Task 5 </label><br>
-
-                                    <input type="checkbox" name="task6" id="">
-                                    <label for="task6"> Task 6 </label><br>
+                                <div id="pendingToDO"> 
                                 </div>
                             </div>
                     </section>
@@ -112,5 +99,6 @@
             <footer></footer>
         </div>
     </div> <!--page wrapper-->
+    <script src="script.js"></script>
 </body>
 </html>
