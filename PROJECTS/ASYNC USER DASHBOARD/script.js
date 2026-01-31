@@ -58,7 +58,8 @@ function renderPosts(posts) {
         const card = document.createElement("div");
 
         card.className =
-            "card shadow-sm border-0 rounded-4 overflow-hidden position-relative";
+    "post-card card shadow-sm border-0 rounded-4 overflow-hidden position-relative";
+
 
         card.innerHTML = `
             <img 
@@ -93,6 +94,8 @@ function renderPosts(posts) {
         });
 
         postsContainer.appendChild(card);
+        setTimeout(() => card.classList.add("post-animate"), 20);
+
     });
 }
 
@@ -183,8 +186,8 @@ function createTodoItem(todo, index) {
 
     const item = document.createElement("div");
 
-    item.className =
-        "list-group-item d-flex justify-content-between align-items-center rounded-3 shadow-sm";
+   item.className = "todo-item list-group-item d-flex justify-content-between align-items-center rounded-3 shadow-sm";
+
 
     const left = document.createElement("div");
     left.className = "d-flex align-items-center gap-2";
@@ -229,6 +232,7 @@ function createTodoItem(todo, index) {
     left.append(checkbox, label);
 
     item.append(left, delBtn);
+    setTimeout(() => item.classList.add("todo-animate"), 20);
 
     return item;
 }
