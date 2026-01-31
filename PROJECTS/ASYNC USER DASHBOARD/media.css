@@ -1,0 +1,49 @@
+@media (max-width: 992px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .posts-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .main-content {
+        padding: 18px;
+    }
+}
+@media (max-width: 576px) {
+
+    /* lighter UI for performance */
+    .posts-section,
+    .todos-section,
+    .post-card,
+    .todo-item {
+        backdrop-filter: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
+
+    .posts-container {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        padding: 14px;
+        padding-bottom: 80px; /* space for bottom nav */
+    }
+
+    header {
+        height: 70px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+}
+body {
+    overflow-x: hidden;
+}

@@ -4,101 +4,222 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASYNC USER DASHBOARD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media.css">
 </head>
-<body>
+<body class=" bg-body-tertiary">
     <div class="page-wrapper">
         <header> <!--nav bar-->
-            <nav>
-                <div> Logo </div>
-                <div>
-                    <div>
-                        <a href="">Dashboard</a>
-                        <a href="">Posts</a>
-                        <a href="">Todos</a>
-                        <a href="">Profile</a>
-                        <a href="">Logout</a>
+            <nav class="navbar bg-white navbar-expand-lg shadow-sm px-4">
+                <div class="container-fluid d-flex align-items-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/logo.png" class="me-2" alt="Jiya's Async Dashboard" height="80">
+                    </a>
+                
+                    <!-- mobile only -->
+                     <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="mainNavbar">
+                        <div class="mx-auto navbar-nav d-flex gap-lg-5 text-center">
+                            <a href="#" class="nav-link active">Dashboard</a>
+                            <a href="#" class="nav-link">Posts</a>
+                            <a href="#" class="nav-link">Todos</a>
+                            <a href="#" class="nav-link">Profile</a>
+                            <a href="#" class="nav-link">Logout</a>
+                        </div>
                     </div>
+                        <div class="dropdown ms-lg-auto text-center mt-3 mt-lg-0">
 
-                    <div>
-                        Avatar
+                        <img
+                            src="assets/aiLogo.png"
+                            class="rounded-circle dropdown-toggle"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            style="width:42px;height:42px;object-fit:cover;cursor:pointer;"
+                        >
+
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
+                            <li><a class="dropdown-item" href="#">👤 Profile</a></li>
+                            <li><a class="dropdown-item" href="#">⚙ Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#">🚪 Logout</a></li>
+                        </ul>
+
                     </div>
                 </div>
             </nav>
         </header>
 <!-- navbar ends here -->
-<br>
-        <div class="layout-wrapper">
-            <aside> <!--side bar-->
-                <div>Sidebar</div>
-                <div>
-                    <a href="">🏡Home</a>
-                    <a href="">🤳Posts</a>
-                    <a href="">📋Todos</a>
-                    <a href="">🛞Settings</a>
+        <div class="layout-wrapper d-flex">
+            <aside class="sidebar">
+ <!--side bar-->
+                <div class="sidebar-nav d-flex flex-column gap-4">
+                    <a href="" class="side-link active"><i class="fa-solid fa-house"></i></a>
+                    <a href="" class="side-link"><i class="fa-solid fa-file-lines"></i></a>
+                    <a href="" class="side-link"><i class="fa-solid fa-clipboard-check"></i></a>
+                    <a href="" class="side-link"><i class="fa-solid fa-gear"></i></a>
                 </div>
             </aside>
-            <br>
+         
 
-            <main>
-                <div class="main-wrapper">
-                    <!-- user post section -->
-                     <section class="user-post-section">
-                        <nav>
-                            <div>
-                                <h2>User Posts</h2>
-                                <button id="postBTN">Add New Post</button>
-                            </div>
-                        </nav>
-                        
-                        <div class="user-container">
-                            <div class="user-cards">
-                                <div class="user-cards-grid">
-                                    <div class="user-box1">
-
-                                        <div class="loading-content" id="loadDiv">
-                                             <!--JS will touch ONLY this.-->
-                                            <div id="statusDiv"></div>   <!-- loading / error -->
+            <main class="flex-grow-1 p-4 mt-2">
+                <div class="main-wrapper container-fluid">
+                    <div class="row g-4">
+                        <!-- user post section -->
+                        <div class="col-lg-8">
+                        <section class="user-post-section card shadow-sm border-0 rounded-4 p-4 h-100">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h2>User Posts</h2>
+                                            <button id="postBTN" class="m-3 btn btn-primary rounded-pill px-4 w-25">Add New Post</button>
                                         </div>
-                                        
-                                        <div class="text-content">
-                                            <!-- <div class="user-post-title"></div> JS will touch ONLY this. -->
-                                            <!-- <div class="user-post-text"></div> JS will touch ONLY this. -->
-                                            <div id="postsContainer"></div> <!-- posts render here -->
+                          
+                                                <div id="postsContainer" class="posts-container pt-4">
+                                                    <div class="skeleton-grid">
+                                                        <div class="skeleton skeleton-card"></div>
+                                                        <div class="skeleton skeleton-card"></div>
+                                                        <div class="skeleton skeleton-card"></div>
+                                                    </div>
+                                                </div> <!-- posts render here -->
+                        </section>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <section class="todo-section card shadow-sm border-0 rounded-4 p-4 h-100">
+
+                                   
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h2>To-Do-List</h2>
+                                            <button id="toDoBTN" class="m-3 btn btn-primary rounded-pill px-3">Add New Todo</button>
+                                        </div>
+                                    <!-- JS will touch ONLY these. -->
+                                    <div class="loading-todo" id="loadToDoDiv">
+                                        <div id="LoadToDoError"></div>  <!-- loading / error -->
+                                    </div>
+                                    
+                                    <div class="completed-checklist pt-4">
+                                        <h4>Completed</h4>
+                                        <!-- JS will touch ONLY these. -->
+                                        <div id="completedToDO" class="list-group list-group-flush">
+                                                <div class="completed-todos skeleton-list">
+                                                <div class="skeleton skeleton-row"></div>
+                                                <div class="skeleton skeleton-row"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <hr>
+                                    <div class="pending-checklist">
+                                        <h4>Pending</h4>
+                                        <!-- JS will touch ONLY these. -->
+                                        <div id="pendingToDO" class="list-group list-group-flush">
+                                            <div class="pending-todos skeleton-list">
+                                                <div class="skeleton skeleton-row"></div>
+                                                <div class="skeleton skeleton-row"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                            </section>
                         </div>
-                    </section>
-
-                    <br>
-                    <section class="todo-section">
-                            <div>
-                                <div>
-                                    <h2>To-Do-List</h2>
-                                    <button>Add New Todo</button>
-                                </div>
-                            </div>
-                            
-                            <div class="completed-checklist">
-                                <h3>Completed</h3>
-                                <div id="LoadToDoError"></div>
-                                <div id="completedToDO"></div>
-                            </div>
-                            <hr>
-                            <div class="pending-checklist">
-                                <h3>Pending</h3>
-                                <div id="pendingToDO"> 
-                                </div>
-                            </div>
-                    </section>
-                </div>
+                    </div> <!--row ends-->
+                </div> <!--main wrapper ends-->
             </main>
-            <br>
 
-            <footer></footer>
+            <!-- Todo Confirm Modal -->
+<div class="modal fade" id="todoConfirmModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4">
+
+      <div class="modal-body text-center p-4">
+        <h6 class="mb-3">Mark this task as completed?</h6>
+
+        <div class="d-flex justify-content-center gap-3">
+          <button id="confirmYes" class="btn btn-success px-4">Yes</button>
+          <button id="confirmNo" class="btn btn-secondary px-4">No</button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- ================= ADD POST MODAL ================= -->
+<div class="modal fade" id="addPostModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+
+      <div class="modal-body p-4">
+        <h5 class="mb-3">Create New Post</h5>
+
+        <input
+          id="postInput"
+          type="text"
+          class="form-control mb-3"
+          placeholder="Enter post title..."
+        />
+
+        <div class="text-end">
+          <button class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</button>
+          <button id="savePostBtn" class="btn btn-primary">Add Post</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= ADD TODO MODAL ================= -->
+<div class="modal fade" id="addTodoModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow">
+
+      <div class="modal-body p-4">
+        <h5 class="mb-3">Create New Todo</h5>
+
+        <input
+          id="todoInput"
+          type="text"
+          class="form-control mb-3"
+          placeholder="Enter todo title..."
+        />
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="todoCompleted">
+          <label class="form-check-label">Mark as completed</label>
+        </div>
+
+        <div class="text-end">
+          <button class="btn btn-light me-2" data-bs-dismiss="modal">Cancel</button>
+          <button id="saveTodoBtn" class="btn btn-primary">Add Todo</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+            
+            <!-- ================= MOBILE BOTTOM NAV ================= -->
+            <nav class="mobile-bottom-nav">
+                <div class="tab">🏠<span>Home</span></div>
+                <div class="tab">📝<span>Posts</span></div>
+                <div class="tab">✅<span>Todos</span></div>
+                <div class="tab">⚙️<span>Settings</span></div>
+            </nav>
+
         </div>
     </div> <!--page wrapper-->
+
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
