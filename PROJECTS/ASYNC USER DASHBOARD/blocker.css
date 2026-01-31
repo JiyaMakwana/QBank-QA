@@ -1,0 +1,147 @@
+/* =========================================
+   DESKTOP ONLY — PREMIUM ANIMATED BLOCKER
+========================================= */
+
+.desktop-only-block {
+    display: none;
+}
+
+/* show only on tablet/mobile */
+@media (max-width: 992px) {
+
+    .page-wrapper {
+        display: none !important;
+    }
+
+    .desktop-only-block {
+        position: fixed;
+        inset: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+
+        /* animated gradient */
+        background: linear-gradient(-45deg,#eef2ff,#e0e7ff,#f5f7fb,#e9d5ff);
+        background-size: 400% 400%;
+        animation: gradientMove 12s ease infinite;
+    }
+}
+
+
+/* ---------- animated gradient ---------- */
+@keyframes gradientMove {
+    0% { background-position:0% 50% }
+    50% { background-position:100% 50% }
+    100% { background-position:0% 50% }
+}
+
+
+/* =========================================
+   GLASS CARD
+========================================= */
+
+.block-card {
+    position: relative;
+    z-index: 2;
+
+    padding: 48px 56px;
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(18px);
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.15),
+        inset 0 1px 0 rgba(255,255,255,.7);
+
+    animation: popIn .5s ease;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* icon */
+.block-card .icon {
+    font-size: 48px;
+    margin-bottom: 18px;
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+
+.block-card h2 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.block-card p {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.block-card span {
+    font-size: 13px;
+    color: #666;
+}
+
+
+/* =========================================
+   FLOATING PARTICLES
+========================================= */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particles::before,
+.particles::after {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .35;
+}
+
+/* purple blob */
+.particles::before {
+    background: #6366f1;
+    top: -200px;
+    left: -200px;
+    animation: blobMove 12s infinite alternate;
+}
+
+/* pink blob */
+.particles::after {
+    background: #a855f7;
+    bottom: -200px;
+    right: -200px;
+    animation: blobMove 14s infinite alternate-reverse;
+}
+
+@keyframes blobMove {
+    from { transform: translate(0,0) }
+    to { transform: translate(120px,80px) }
+}
