@@ -419,3 +419,61 @@ button:active {
     box-shadow: 0 16px 36px rgba(0,0,0,.12);
     transition: all .25s ease;
 }
+
+/* =========================================
+   BUTTON MORPH (outline → filled animation)
+========================================= */
+
+.btn-dynamic {
+    position: relative;
+    overflow: hidden;
+    transition:
+        background-color .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        transform .15s ease,
+        box-shadow .25s ease;
+}
+
+/* hover lift */
+.btn-dynamic:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(79,70,229,.25);
+}
+
+/* click press */
+.btn-dynamic:active {
+    transform: scale(.96);
+}
+
+
+/* ---------- FILL RIPPLE EFFECT ---------- */
+.btn-dynamic::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #4f46e5;
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform .35s ease;
+    z-index: -1;
+}
+
+/* when button becomes filled */
+.btn-filled::before {
+    transform: scaleX(1);
+}
+
+
+/* ---------- POP ANIMATION ---------- */
+.btn-pop {
+    animation: btnPop .35s ease;
+}
+
+@keyframes btnPop {
+    0%   { transform: scale(.85); opacity: 0; }
+    60%  { transform: scale(1.06); }
+    100% { transform: scale(1); opacity: 1; }
+}

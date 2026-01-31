@@ -34,12 +34,34 @@ let postsState = load("posts");
 let todosState = load("todos");
 
 function updateButtonLabels() {
-    postBTN.textContent =
-        postsState.length === 0 ? "Load Posts" : "Add New Post";
 
-    toDoBTN.textContent =
-        todosState.length === 0 ? "Load Todos" : "Add New Todo";
+    const isPostsEmpty = postsState.length === 0;
+    const isTodosEmpty = todosState.length === 0;
+
+    /* ---------- TEXT ---------- */
+    postBTN.textContent = isPostsEmpty ? "Load Posts" : "Add New Post";
+    toDoBTN.textContent = isTodosEmpty ? "Load Todos" : "Add New Todo";
+
+    /* ---------- STYLE SWITCH ---------- */
+    [postBTN, toDoBTN].forEach(btn => {
+        btn.classList.remove("btn-pop");
+        void btn.offsetWidth; // restart animation
+    });
+
+    /* POSTS */
+    postBTN.classList.toggle("btn-outline-primary", isPostsEmpty);
+    postBTN.classList.toggle("btn-primary", !isPostsEmpty);
+    postBTN.classList.toggle("btn-filled", !isPostsEmpty);
+    postBTN.classList.add("btn-pop");
+
+    /* TODOS */
+    toDoBTN.classList.toggle("btn-outline-primary", isTodosEmpty);
+    toDoBTN.classList.toggle("btn-primary", !isTodosEmpty);
+    toDoBTN.classList.toggle("btn-filled", !isTodosEmpty);
+    toDoBTN.classList.add("btn-pop");
 }
+
+
 
 
 // ================= FAKE SERVERS =================
@@ -166,7 +188,7 @@ postBTN.addEventListener("click", async () => {
     }
 
      /* AFTER FIRST LOAD → open modal */
-     updateButtonLabels();
+    //  updateButtonLabels();
 
     const modal = new bootstrap.Modal(document.getElementById("addPostModal"));
     modal.show();
@@ -348,3 +370,4 @@ document.querySelectorAll(".nav-link").forEach(link => {
   });
 });
 
+updateButtonLabels();  
