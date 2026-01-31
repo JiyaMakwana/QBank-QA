@@ -33,6 +33,15 @@ function load(key) {
 let postsState = load("posts");
 let todosState = load("todos");
 
+function updateButtonLabels() {
+    postBTN.textContent =
+        postsState.length === 0 ? "Load Posts" : "Add New Post";
+
+    toDoBTN.textContent =
+        todosState.length === 0 ? "Load Todos" : "Add New Todo";
+}
+
+
 // ================= FAKE SERVERS =================
 
 function fakeFetchPosts() {
@@ -52,6 +61,8 @@ function fakeFetchPosts() {
 function renderPosts(posts) {
 
     postsContainer.innerHTML = "";
+    updateButtonLabels();
+
 
     posts.forEach((post, index) => {
 
@@ -155,6 +166,8 @@ postBTN.addEventListener("click", async () => {
     }
 
      /* AFTER FIRST LOAD → open modal */
+     updateButtonLabels();
+
     const modal = new bootstrap.Modal(document.getElementById("addPostModal"));
     modal.show();
 
@@ -244,6 +257,8 @@ function renderTodos(todos) {
 
     completedDiv.innerHTML = "";
     pendingDiv.innerHTML = "";
+    updateButtonLabels();
+
 
     todos.forEach((todo,index) => {
         const el = createTodoItem(todo, index);
