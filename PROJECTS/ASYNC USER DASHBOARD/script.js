@@ -137,7 +137,21 @@ if (postsState.length > 0) {
 
 // ================= POSTS =================
 
-postBTN.addEventListener("click", () => {
+postBTN.addEventListener("click", async () => {
+    /* FIRST TIME → fetch defaults */
+    if (postsState.length === 0) {
+        postBTN.disabled = true;
+        showLoading();
+
+        postsState = await fakeFetchPosts();
+        save("posts", postsState);
+        renderPosts(postsState);
+
+        postBTN.disabled = false;
+        return; // stop here
+    }
+
+     /* AFTER FIRST LOAD → open modal */
     const modal = new bootstrap.Modal(document.getElementById("addPostModal"));
     modal.show();
 
@@ -263,7 +277,21 @@ if (todosState.length > 0) {
     renderTodos(todosState);
 }
 
-toDoBTN.addEventListener("click", () => {
+toDoBTN.addEventListener("click", async () => {
+
+    /* FIRST TIME → fetch defaults */
+    if (todosState.length === 0) {
+        toDoBTN.disabled = true;
+        showTodosLoading();
+
+        todosState = await fakeFetchTodos();
+        save("todos", todosState);
+        renderTodos(todosState);
+
+        toDoBTN.disabled = false;
+        return;
+    }
+     /* AFTER FIRST LOAD → open modal */
     const modal = new bootstrap.Modal(document.getElementById("addTodoModal"));
     modal.show();
 
