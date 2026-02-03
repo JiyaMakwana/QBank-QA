@@ -1,0 +1,33 @@
+<!-- Create 3 buttons with different text.
+Tasks:
+Use one event listener only
+Log which button was clicked using event.target -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple buttons
+    </title>
+</head>
+<body>
+    <div id="btn-container">
+        <button id="btn1">Button 1</button>
+        <button id="btn2">Button 2</button>
+        <button id="btn3">Button 3</button>
+        <p id="text-display"></p>
+    </div>
+    
+    
+    <script>
+        let p=document.getElementById('text-display');
+        let div=document.getElementById("btn-container");
+
+        div.addEventListener("click" ,(event)=>{
+            if(event.target.tagName !=="BUTTON") return;
+
+            p.innerText=event.target.textContent;
+        });
+    </script>
+</body>
+</html>

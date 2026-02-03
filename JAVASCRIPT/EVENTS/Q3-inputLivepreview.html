@@ -1,0 +1,31 @@
+<!-- Create:
+a input field
+a <p> tag
+Tasks:
+Whatever user types should appear live inside <p>
+If input is empty → show "Start typing..." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input live preview
+    </title>
+</head>
+<body>
+        <input type="text" id="input" placeholder="type to see live preview"/>
+        <p id="text-display">Start Typing...</p>
+    
+    
+    <script>
+        let p=document.getElementById('text-display');
+        let input=document.getElementById("input");
+
+        //keyup event
+        input.addEventListener("input" ,(event)=>{
+                p.innerText="";
+                p.innerText=event.target.value;   
+        });
+    </script>
+</body>
+</html>

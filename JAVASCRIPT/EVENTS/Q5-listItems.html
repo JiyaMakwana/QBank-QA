@@ -1,0 +1,53 @@
+<!-- Problem 5 — Click list items (delegation)
+Create a <ul> with 5 <li> items.
+Tasks:
+Add one click listener to <ul>
+When any <li> is clicked → highlight it
+Log the text of clicked item -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click list items (delegation)
+    </title>
+    <style>
+        .active{
+            background-color: lightgreen;
+            width:fit-content;
+            font-weight: bold;
+        }
+        .btn{
+            background-color: rgba(255, 0, 0, 0.745);
+            color:white;
+        }
+    </style>
+</head>
+<body>
+        <ul id="list" >
+            <li id="item1">item 1 <button class="btn">X</button></li>
+            <li id="item2">item 2 <button class="btn">X</button></li>
+            <li id="item3">item 3 <button class="btn">X</button></li>
+            <li id="item4">item 4 <button class="btn">X</button></li>
+            <li id="item5">item 5 <button class="btn">X</button></li>
+        </ul>
+    
+    <script>
+        let ul=document.getElementById("list");
+
+        //keyup event
+        ul.addEventListener("click" ,(event)=>{
+            if(event.target.tagName==="LI"){
+                event.target.classList.add("active"); 
+               console.log(event.target.textContent)
+            }
+            let li= event.target.closest("li");
+            if(event.target.tagName==="BUTTON"){
+               li.remove();
+               return;
+            }
+               
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!-- Create:
+a parent div
+a button inside it
+Tasks:
+Clicking parent logs "Parent clicked"
+Clicking button logs "Button clicked"
+Prevent parent log when button is clicked -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop propagation
+    </title>
+    <style>
+        
+        .btn{
+            background-color: rgba(255, 0, 0, 0.745);
+            color:white;
+        }
+    </style>
+</head>
+<body>
+        <div id="container" >
+            <button id="btn">Click</button>
+        </div>
+    
+    <script>
+        
+        let div=document.getElementById("container");
+        let btn=document.getElementById("btn");
+
+        div.addEventListener("click" ,(event)=>{
+            console.log("Parent clicked");
+               
+        });
+
+        btn.addEventListener("click",(event)=>{
+            console.log("button clicked");
+
+            event.stopPropagation();
+        })
+    </script>
+</body>
+</html>

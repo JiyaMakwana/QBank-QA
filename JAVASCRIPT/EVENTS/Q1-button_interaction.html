@@ -1,0 +1,35 @@
+<!-- Create a button.
+asks:
+On first click → text becomes "Clicked once"
+On second click → text becomes "Clicked twice"
+After that → disable the button -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button interaction
+    </title>
+</head>
+<body>
+    <button id="btn">CLick me!</button>
+
+
+    <script>
+        let btn=document.getElementById('btn');
+        let count=0;
+
+        btn.addEventListener("click" ,()=>{
+            count++;
+            if(count===1){
+                btn.innerText="";
+                btn.innerText="Clicked once";
+            }else if(count === 2){
+                btn.innerText="";
+                btn.innerText="clicked twice";
+                btn.disabled=true;
+            }
+        })
+    </script>
+</body>
+</html>
