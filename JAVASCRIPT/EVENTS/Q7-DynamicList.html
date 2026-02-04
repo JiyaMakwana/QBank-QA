@@ -1,0 +1,63 @@
+<!-- Problem 8 — Dynamic list
+Create an input + button "Add Item".
+Tasks:
+Add new <li> dynamically
+Clicking any item removes it (delegation)
+No individual listeners on <li> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic list</title>
+    <style>
+        li{
+            cursor:pointer;
+            transition: 0.2s;
+        }
+        li:hover{
+            color:red;
+            transform: translateX(5px);
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="parent">
+        <input type="text" id="text"/>
+        <button id="btn">Add Item</button>
+    </div>
+    
+    <ul id="list"></ul>
+
+    <script>
+        let div=document.getElementById("parent");
+        let ul=document.getElementById("list");
+        let input=document.getElementById("text");
+
+        div.addEventListener("click", (e) => {
+            if(e.target.tagName==="BUTTON"){
+
+                //if user entered only space
+                if(input.value.trim()==="")return;
+
+                let li=document.createElement("li");
+                li.textContent=input.value;
+                ul.appendChild(li);
+
+                //clear after button click
+                input.value="";
+            }
+            
+        });
+
+        // Clicking any item removes it (delegation)
+        ul.addEventListener("click",(e) => {
+            if(e.target.tagName==="LI"){
+                
+                e.target.remove();
+            }
+        })
+    </script>
+</body>
+</html>
