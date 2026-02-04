@@ -1,0 +1,76 @@
+<!-- Tasks:
+Save form data to localStorage
+Use JSON.stringify
+Show "Saved locally" message -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select & radio</title>
+</head>
+<body>
+    <form action="" id="form">
+        <select name="" id="drop">
+            <option value="i1">item 1</option>
+            <option value="i2">item 2</option>
+            <option value="i3">item 3</option>
+        </select>
+        
+        <input type="radio" name="gender" id="r1" value="male">
+        <label for="r1">Male</label>
+        <input type="radio" name="gender" id="r2" value="female">
+        <label for="r2">Female</label>
+
+        <input type="submit" value="Submit" id="btn">
+    </form>
+
+    <div id="container"></div>
+    <script>
+        let form=document.getElementById("form");
+        let div=document.getElementById("container");
+        let drop=document.getElementById("drop");
+        let btn=document.getElementById("btn");
+        
+        form.addEventListener("submit", (e)=>{
+            e.preventDefault();
+            let select=drop.value;
+            let gender=document.querySelector('input[name="gender"]:checked');
+            // let genderValue=gender ? gender.value:"not selected";
+
+            if(!gender) {
+                alert("please select gender");
+            }
+            let genderValue=gender.value;
+            
+            div.innerHTML=`item:${select} <br> gender:${genderValue}`;
+            //obj to store data
+            let data={
+                item:select,
+                gender:genderValue
+            }
+            //convert obj to str
+            let resultStr=JSON.stringify(data);
+
+            //saving data
+            
+            //we cant check success like these instead use try/catch
+            // if(save){
+            //     alert("Saved Locally");
+            // }
+            // else{
+            //     alert("error saving")
+            // }
+            try {
+                localStorage.setItem("formData",resultStr);
+                alert("Saved Locally");
+            } catch (error) {
+                alert("Error");
+            }
+            
+
+            form.reset();
+        })
+    </script>
+</body>
+</html>
