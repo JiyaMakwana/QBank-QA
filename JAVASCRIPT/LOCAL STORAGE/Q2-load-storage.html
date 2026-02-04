@@ -1,0 +1,81 @@
+<!-- Problem 14 — Load from localStorage
+On page reload:
+Tasks:
+Fetch data from localStorage
+Parse it
+Auto-fill form fields -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load from localStorage</title>
+</head>
+<body>
+    <form action="" id="form">
+        <select name="" id="drop">
+            <option value="i1">item 1</option>
+            <option value="i2">item 2</option>
+            <option value="i3">item 3</option>
+        </select>
+        
+        <input type="radio" name="gender" id="r1" value="male">
+        <label for="r1">Male</label>
+        <input type="radio" name="gender" id="r2" value="female">
+        <label for="r2">Female</label>
+
+        <input type="submit" value="Submit" id="btn">
+    </form>
+
+    <div id="container"></div>
+    <script>
+        let form=document.getElementById("form");
+        let div=document.getElementById("container");
+        let drop=document.getElementById("drop");
+        
+        form.addEventListener("submit", (e)=>{
+            e.preventDefault();
+            let select=drop.value;
+            let gender=document.querySelector('input[name="gender"]:checked');
+            // let genderValue=gender ? gender.value:"not selected";
+
+            if(!gender) {
+                alert("please select gender");
+                return;
+            }
+            let genderValue=gender.value;
+            
+            div.innerHTML=`item:${select} <br> gender:${genderValue}`;
+            //obj to store data
+            let data={
+                item:select,
+                gender:genderValue
+            }
+            //convert obj to str
+            let resultStr=JSON.stringify(data);
+            localStorage.setItem("formData",resultStr);
+            alert("Saved Locally");
+
+            form.reset();
+        })
+
+        window.addEventListener("load",()=>{
+            let savedStr=localStorage.getItem("formData");
+            if(!savedStr) return;
+
+            let saved=JSON.parse(savedStr);
+
+            drop.value=saved.item;
+
+            let radio=document.querySelector(`input[name="gender"][value="${saved.gender}"]`);
+
+            if(radio){
+                radio.checked=true;
+            }
+
+            div.innerHTML=`item: ${saved.item} <br> gender: ${saved.gender}`;
+        })
+    </script>
+</body>
+</html>
