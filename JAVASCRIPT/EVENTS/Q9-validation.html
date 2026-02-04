@@ -1,0 +1,50 @@
+<!-- Problem 10 — Validation
+Extend Problem 9.
+Tasks:
+If name or email is empty → show error message
+If valid → show "Form submitted successfully" -->
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+ </head>
+ <body>
+    <form id="form">
+        <input type="text" name="text" id="text"/>
+        <input type="email" name="mail" id="mail"/>
+        <input type="submit" value="Submit" id="btn"/>
+    </form>
+
+    <script>
+        let btn=document.getElementById("btn");
+        let mail=document.getElementById("mail");
+        let input=document.getElementById("text");
+        let form=document.getElementById("form");
+        
+
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let namePatt=/^[a-zA-Z ]+$/;
+            let mailPatt=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let name=input.value.trim();
+            let email=mail.value.trim();
+            if(name==="" || email==="")
+            {
+                alert( "Error");
+            } 
+            else if(!namePatt.test(name) || !mailPatt.test(email)) {
+                alert("Name or Email is invalid");
+            }
+            else{
+                alert("Form submitted successfully");
+                form.reset();
+            }
+
+        })
+    </script>
+ </body>
+ </html>

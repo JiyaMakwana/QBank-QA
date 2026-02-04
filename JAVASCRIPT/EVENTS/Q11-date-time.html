@@ -1,0 +1,40 @@
+<!-- Problem 12 — Date & time input
+Create date and time inputs.
+Tasks:
+Capture selected date & time
+Display formatted result in DOM -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date & time input</title>
+</head>
+<body>
+    <form action="" id="form">
+        <input type="datetime-local" name="" id="datetime"/>
+        <input type="submit" value="Submit"/>
+    </form>
+    <div id="container"></div>
+    <script>
+        let form=document.getElementById("form");
+        let div=document.getElementById("container");
+        let datetime=document.getElementById("datetime");
+
+
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            let value=datetime.value;
+
+            if(!value) return;
+
+            let dateObj=new Date(value);
+            let date=dateObj.toLocaleDateString();
+            let time=dateObj.toLocaleTimeString();
+            div.innerHTML=`<p>Date: ${date}</p>
+                            <p>Date: ${time}</p>`;
+            form.reset();
+        })
+    </script>
+</body>
+</html>
