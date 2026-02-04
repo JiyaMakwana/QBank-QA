@@ -1,0 +1,36 @@
+<!-- Problem 9 — Simple form handling
+Create a form with:
+name input
+email input
+submit button
+asks:
+Prevent page reload
+On submit → log form data as object
+{ name: "...", email: "..." } -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple form handling</title>
+ </head>
+ <body>
+    <form id="form">
+        <input type="text" name="text" id="text"/>
+        <input type="email" name="mail" id="mail"/>
+        <input type="submit" value="Submit" id="btn"/>
+    </form>
+
+    <script>
+        let btn=document.getElementById("btn");
+        let mail=document.getElementById("mail");
+        let input=document.getElementById("text");
+
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            let data=`{name:${input.value} , email:${mail.value}}`
+            console.log(data);
+        })
+    </script>
+ </body>
+ </html>
