@@ -1,0 +1,39 @@
+<!-- Problem 4 — Dynamic fields
+Add one more input:
+age
+Tasks:
+Without changing your logic
+Ensure it automatically appears in the object -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log form values</title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" name="name" id="input">
+        <input type="text" name="surname" id="input">
+        <input type="email" name="email" id="mail">
+        <input type="submit" value="Submit" id="btn">
+    </form>
+
+    <div id="container"></div>
+    <script>
+        let form=document.getElementById("form");
+        let div=document.getElementById("container");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let formData=new FormData(form);
+            div.innerHTML="";
+
+            for(let [key, value] of formData) {
+                div.innerHTML += `${key}: ${value} <br>`;
+            }
+            form.reset();
+        })
+    </script>
+</body>
+</html>

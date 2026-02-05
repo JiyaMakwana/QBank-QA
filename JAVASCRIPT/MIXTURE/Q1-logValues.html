@@ -1,0 +1,38 @@
+<!-- Problem 1 — Log form values (basic)
+Create a form with:
+name input
+email input
+submit button
+Tasks:
+On submit, prevent page reload
+Log name.value and email.value separately -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log form values</title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" name="" id="input">
+        <input type="email" name="" id="mail">
+        <input type="submit" value="Submit" id="btn">
+    </form>
+
+    <div id="container"></div>
+    <script>
+        let form=document.getElementById("form");
+        let mail=document.getElementById("mail");
+        let input=document.getElementById("input");
+        let btn=document.getElementById("btn");
+        let div=document.getElementById("container");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            div.innerHTML=`Name: ${input.value} <br> Email: ${mail.value}`;
+            form.reset();
+        })
+    </script>
+</body>
+</html>
