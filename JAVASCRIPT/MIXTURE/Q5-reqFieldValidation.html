@@ -1,0 +1,51 @@
+<!-- Problem 5 — Required field validation
+Using the same form:
+Tasks:
+If any field is empty → show error message below that input
+Error text: "This field is required" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Required field validation</title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" name="name" id="input">
+        <span class="error"></span>
+        <input type="text" name="surname" id="surname">
+        <span class="error"></span>
+        <input type="email" name="email" id="mail">
+        <span class="error"></span>
+        <input type="submit" value="Submit" id="btn">
+    </form>
+
+    <div id="container"></div>
+    <script>
+        let form=document.getElementById("form");
+        let div=document.getElementById("container");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let formData=new FormData(form);
+            let errors=document.querySelectorAll(".error");
+            // clear old errors
+            errors.forEach(err=>err.textContent="");
+
+            let index=0;
+            // let hasError=false;
+
+            div.innerHTML="";
+
+            for(let [key, value] of formData) {
+                div.innerHTML += `${key}: ${value} <br>`;
+                if(value.trim()==="") {
+                    errors[index].textContent="This field is required";
+                }
+            }
+            form.reset();
+        })
+    </script>
+</body>
+</html>
