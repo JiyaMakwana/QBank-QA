@@ -11,21 +11,49 @@ Clear error when user starts typing. -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Data Foundations</title>
+    <title>Form Validation</title>
+    <style>
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-left: 15px;
+    }
+  </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
     <form action="" class="m-3" id="form">
         <input type="text" name="name" id="name" placeholder="Enter your name" class="form-control-lg m-3">
+        <div id="nameError"></div>
+
         <input type="email" name="email" id="mail" class="form-control-lg m-3" placeholder="Email id">
+        <div id="mailError"></div>
+
         <input type="password" name="password" id="pass" class="form-control-lg m-3" placeholder="Password">
+        <div id="passError"></div>
+
         <input type="submit" value="Submit" class="btn btn-info" id="submit">
     </form>
-    <div id="container" class="container-fluid"></div>
-    <div id="container-2" class="container-fluid"></div>
+    <!-- <div id="container" class="container-fluid"></div>
+    <div id="container-2" class="container-fluid"></div> -->
     
     <script>
         const form=document.getElementById("form");
+        const nameInput=document.getElementById("name");
+        const mailInput=document.getElementById("mail");
+        const passInput=document.getElementById("pass");
+
+        const nameError=document.getElementById("nameError");
+        const mailError=document.getElementById("mailError");
+        const passError=document.getElementById("passError");
+
+        //clear error while typing
+        [nameInput, mailInput, passInput].forEach(input => {
+            input.addEventListener("input", ()=> {
+                input.nextElementSibling.innerText="";
+            })
+        })
+
 
         form.addEventListener("submit", (e) => {
             // Prevent default submit
