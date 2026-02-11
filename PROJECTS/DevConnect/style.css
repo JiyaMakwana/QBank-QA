@@ -9,5 +9,19 @@
 }
 .app-wrapper {
     border-radius: 10px;
-    background-color: #FFFFFF;
+    background-color: rgba(220, 220, 220, 0.3);
+}
+.navbar {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height:4.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.navbar-logo {
+    color:#34C759;
+    font-size: 30px;
+}
+.mobile-footer {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
 }
