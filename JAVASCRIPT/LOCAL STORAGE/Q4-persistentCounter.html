@@ -1,0 +1,75 @@
+<!-- Problem 1 — Persistent Counter
+Create:
+button
+– button
+Reset button
+Number display
+Requirements:
+Count should NOT reset on refresh
+Store value in localStorage
+On page load → read from storage -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Persistent Counter</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container text-center mt-5">
+
+        <h1 id="count">0</h1>
+
+        <button id="minus" class="btn btn-danger">–</button>
+        <button id="plus" class="btn btn-success">+</button>
+        <button id="reset" class="btn btn-secondary">Reset</button>
+    </div>
+
+    <script>
+        const display = document.getElementById("count");
+        const plusBtn = document.getElementById("plus");
+        const minusBtn = document.getElementById("minus");
+        const resetBtn = document.getElementById("reset");
+
+        let count=0;
+
+        // On page load → read from storage
+        let stored=localStorage.getItem("counter");
+
+        if(stored !== null) {
+            //getItem has stored string as key
+            count=Number(stored);
+        }
+        //it is called here because if we reload the stored count is displayed if any
+        updateDisplay();
+        function updateDisplay() {
+            //update screen
+            display.textContent=count;
+            //save
+            localStorage.setItem("counter",count);
+
+        }
+
+        plusBtn.addEventListener("click", () => {
+            count++;
+            updateDisplay();
+        });
+
+        minusBtn.addEventListener("click", () => {
+            count--;
+            updateDisplay();
+        });
+
+        resetBtn.addEventListener("click", () => {
+            count=0;
+            updateDisplay();
+        });
+    </script>
+    </body>
+</html>
