@@ -31,10 +31,12 @@
 
             <input type="submit" value="Submit" id="btn" class="btn btn-primary">
         </form>
+        <div id="container"></div>
     </div>
 
     <script>
         const form=document.getElementById("form");
+        const div=document.getElementById("container");
 
         form.addEventListener("submit",(event) => {
             // prevent reload
@@ -47,8 +49,10 @@
             let dataObj=new Object(); // or {}
             for(let [key,value] of formData) {
                 dataObj[key]=value;
+                div.innerHTML+=` <p>${key} ":" ${value}</p>`
             }
             console.log(dataObj);
+            
             form.reset();
         })
 
