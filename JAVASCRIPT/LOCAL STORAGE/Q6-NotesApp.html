@@ -1,0 +1,112 @@
+<!-- Problem 3 — Simple Notes App
+Create:
+Input field
+Add button
+Notes list
+Delete note button
+Requirements:
+
+Each note stored in localStorage
+Notes persist after refresh
+Store as array of strings -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Notes App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background: #f5f6fa;
+      }
+
+      .note-item {
+        transition: 0.2s;
+      }
+
+      .note-item:hover {
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4" style="width: 400px">
+      <h4 class="text-center mb-3">📝 My Notes</h4>
+
+      <!-- input section -->
+      <div class="input-group mb-3">
+        <input
+          id="noteInput"
+          class="form-control"
+          placeholder="Write a note..."
+        />
+        <button id="addBtn" class="btn btn-primary">Add</button>
+      </div>
+
+      <!-- notes list -->
+      <ul id="notesList" class="list-group"></ul>
+    </div>
+
+    <script>
+      const input = document.getElementById("noteInput");
+      const addBtn = document.getElementById("addBtn");
+      const ul = document.getElementById("notesList");
+
+      let notes = [];
+
+      // load from storage
+      const saved = localStorage.getItem("notes");
+      if (saved) {
+        notes = JSON.parse(saved);
+      }
+       renderNotes();
+      // add note
+      addBtn.addEventListener("click", () => {
+        const text = input.value.trim();
+        if (!text) return;
+
+        notes.push(text);
+
+        input.value = ""; //once pushed empty the input field
+        saveNotes();
+        renderNotes();
+      });
+      // function to save notes and render notes
+      function saveNotes() {
+        localStorage.setItem("notes", JSON.stringify(notes));
+      }
+
+      // display notes in li
+      function renderNotes() {
+        ul.innerHTML = "";
+
+        notes.forEach((note, index) => {
+          const li = document.createElement("li");
+          li.className =
+            "list-group-item d-flex justify-content-between align-items-center note-item";
+            li.innerHTML=`
+                <span>${note}</span>
+                <button class="btn btn-sm">❎</button>`;
+            
+            // for all li we user click on delete the item should be removed
+            li.querySelector("button").addEventListener("click", () => {
+                // start removing FROM here
+                // remove HOW MANY items
+                notes.splice(index,1);
+                saveNotes();
+                renderNotes();
+            });
+
+            ul.appendChild(li);
+        
+        });
+      }
+    </script>
+  </body>
+</html>
