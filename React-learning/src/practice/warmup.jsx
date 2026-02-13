@@ -131,6 +131,64 @@ function Theme() {
     
 }
 
+// 9️⃣ Login Form
+function FormValidation() {
+    const [email, setEmail]=useState("");
+    const [password, setPassword]=useState("");
+    const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState("");
+    const passRegex=/^.{6,}$/;
+
+    const handleSubmit= (e) => {
+        e.preventDefault();
+        // console.log(`${email} , ${password}`);
+        setError("")
+        if(email.trim()==="") {
+            setError("Email is required");
+            setSubmitted(false);
+            return;
+        }
+        if(!passRegex.test(password)) {
+            setError("Password must be more than 6 characters");
+            setSubmitted(false);
+            return;
+        }
+        setSubmitted(true);
+    }
+
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    // required
+                    />
+                <input 
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button type="submit">Submit</button>
+            </form>
+            {error && <p style={{color:"red"}}>{error}</p>}
+
+            {submitted && (
+                <>
+                    <h2>Form Data</h2>
+                    <p>Email: {email}</p>
+                    <p>Password: {password}</p>
+                </>
+            )}
+        </>
+
+    )
+
+}
+
 function Wrap() {
     return(
         <>
@@ -138,7 +196,8 @@ function Wrap() {
             <Student/> */}
             
             <GreetUser name="Jiya" city="Ahmedabad"/>
-            <ProfileCard name="Jiya" role="Software Developer" city="Ahmedabad"/>
+            {/* <ProfileCard name="Jiya" role="Software Developer" city="Ahmedabad"/> */}
+            <FormValidation/>
             <Counter/>
             <Theme/>
         </>
