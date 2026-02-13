@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const prices=[100,200,300,400];
 function Transform() {
     const newArr=prices.map(arr => arr*0.9);
@@ -40,6 +42,91 @@ function Student() {
                             ))}
             </ul>
         </>
+    ) 
+}
+
+// 3️⃣ Arrow + Template Literal
+const GreetUser=({name,city}) =>{
+    return (
+        <>
+            <h3>{`Hello ${name} from ${city}`}</h3>
+        </>
+    )
+}
+
+// 4️⃣ Profile Card Component
+function ProfileCard({name, role, city}) {
+    const users = [
+        { id: 1, name: "Jiya", age: 21 },
+        { id: 2, name: "Aman", age: 22 },
+        { id: 3, name: "Neha", age: 20 }
+];
+
+    return (
+        <>
+            <ul>
+                {users.map((user,index) => (
+                    <li key={index}>{user.name}</li>
+                ))}
+            </ul>
+            <div>
+                <p>{role}</p>
+                <p>{city}</p>
+            </div>
+        </>
+    )
+}
+
+// 7️⃣ Counter with Limits
+function Counter() {
+    const [count, setCount]=useState(0);
+
+    const increase = () => {
+        setCount(prev => prev + 1);
+    };
+
+    const decrease = () => {
+        if(count > 0) {
+            setCount(prev => prev - 1);
+        }
+    };
+
+    const reset = () => {
+        setCount(0);
+    };
+    
+    return (
+        <div>
+            <h2>Counter:: {count}</h2>
+            {/* Short Method */}
+            {/* <button onClick={()=>setCount(count + 1)}>Increase</button>
+            <button onClick={()=> count > 0 && setCount(count - 1)}>Decrease</button>
+            <button onClick={()=>setCount(0)}>Reset</button> */}
+
+            <button onClick={increase}>Increase</button>
+            <button onClick={decrease}>Decrease</button>
+            <button onClick={reset}>Reset</button>
+
+            {count > 10 && <p style={{color :"red"}}>High value!</p>}
+        </div>
+    )
+}
+
+// 8️⃣ Toggle Dark Mode
+function Theme() {
+    const [darkMode, setDarkMode ] = useState(false);
+
+    return (
+        <div style={{
+            backgroundColor: darkMode ? "#1e293b" : "#f1f5f9",
+            color: darkMode ? "white" : "black",
+            // minHeight:"50vh",
+            padding:"20px"
+        }}>
+
+            <h2>{darkMode ? "Dark Mode" : "Light Mode"}</h2>
+            <button onClick={() => setDarkMode(!darkMode)}>Toggle Theme</button>
+        </div>
     )
     
 }
@@ -47,8 +134,13 @@ function Student() {
 function Wrap() {
     return(
         <>
-            <Transform/>
-            <Student/>
+            {/* <Transform/>
+            <Student/> */}
+            
+            <GreetUser name="Jiya" city="Ahmedabad"/>
+            <ProfileCard name="Jiya" role="Software Developer" city="Ahmedabad"/>
+            <Counter/>
+            <Theme/>
         </>
     )
 }
