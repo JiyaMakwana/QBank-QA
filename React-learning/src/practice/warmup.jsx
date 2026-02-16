@@ -173,6 +173,11 @@ function FormValidation() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button type="submit">Submit</button>
+                <button type="button" onClick={()=>{
+                    setEmail("");
+                    setPassword("");
+                    setError("");
+                }}>Clear Form</button>
             </form>
             {error && <p style={{color:"red"}}>{error}</p>}
 
