@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .main-page {
     background-color: rgba(220, 220, 220, 0.3);
 
@@ -25,3 +26,22 @@
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
 }
+
+.active {
+    background-color: #34C759;
+    border-radius: 10px;
+    width:max-content;
+    height: 1.5rem;
+    color: white;
+}
+#navbarSupportedContent {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+
+
+

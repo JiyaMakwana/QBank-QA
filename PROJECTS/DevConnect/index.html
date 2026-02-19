@@ -18,7 +18,7 @@
       <div class="app-wrapper container-lg min-vh-100 p-0">
 
         <!-- navbar -->
-        <nav class="navbar navbar-expand-lg bg-white">
+        <nav class="navbar bg-white">
           <div class="container-fluid">
             <a href="#" class="navbar-brand d-flex align-items-center gap-2">
               <span class="navbar-logo"><i class="fa-solid fa-microchip"></i></span>
@@ -28,7 +28,7 @@
 
             <!-- Hamburger -->
             <button 
-              class="navbar-toggler" 
+              class="navbar-toggler border-0 shadow-none d-lg-none ms-auto" 
               type="button" 
               data-bs-toggle="collapse" 
               data-bs-target="#navbarSupportedContent" >
@@ -36,7 +36,47 @@
             </button>
 
             <!-- Collapsible Content -->
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-lg-none collapse navbar-collapse bg-white shadow-sm p-3" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+
+                      <li class="nav-item pb-3">
+                        <a class="nav-link active" href="#">
+                          <i class="fa-solid fa-house-user me-2"></i>
+                          Dashboard
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">
+                          <i class="fa-solid fa-bars-progress me-2"></i>
+                          Projects
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">
+                          <i class="fa-solid fa-clipboard-check me-2"></i>
+                          Tasks
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">
+                          <i class="fa-solid fa-comment-dots me-2"></i>
+                          Messages
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">
+                          <i class="fa-solid fa-gear me-2"></i>
+                          Settings
+                        </a>
+                      </li>
+
+                    </ul>
+            </div>
+
             <div class="d-flex flex-column flex-lg-row ms-lg-auto align-items-lg-center gap-3">
               <!-- search -->
               <form class="d-none d-lg-flex me-2">
@@ -74,13 +114,72 @@
                 </li>
               </ul>
             </div>
-          </div>
+         
         </div>
-      </nav>
+        </nav>
 
+        <!-- side bar -->
+         <aside class="d-none d-lg-block">
+            <div class="bg-white vh-100 d-flex flex-column align-items-center" style="width:20%">
+                <ul type="none" class="fw-semibold nav nav-pills flex-column mt-4" style="font-size: 17px;">
 
-      </div>
-    </div>
+                  <li class="mb-4 nav-item">
+                    <a href="" class="nav-link active bg-success text-white rounded h-auto">
+                        <i class="fa-solid fa-house-user pe-2"></i>
+                      Dashboard
+                    </a>
+                  </li>
+
+                  <li class="nav-item mb-4">
+                    <a href="" class="nav-link text-secondary">
+                        <i class="fa-solid fa-bars-progress pe-2"></i>                 
+                      Projects
+                    </a>
+                  </li>
+
+                  <li class="nav-item mb-4">
+                    <a href="" class="nav-link text-secondary">
+                        <i class="fa-solid fa-clipboard-check pe-2"></i>
+                      Tasks
+                    </a>
+                  </li>
+
+                  <li class="nav-item mb-4">
+                    <a href="" class="nav-link text-secondary">
+                        <i class="fa-solid fa-comment-dots pe-2"></i>              
+                      Messages
+                    </a>
+                  </li>
+
+                  <li class="nav-item mb-4">
+                    <a href="" class="nav-link text-secondary">
+                        <i class="fa-solid fa-file pe-2"></i>      
+                      Documents
+                    </a>
+                  </li>
+
+                  <li class="nav-item mb-4">
+                    <a href="" class="nav-link text-secondary">
+                        <i class="fa-solid fa-gear pe-2"></i>         
+                      Settings
+                    </a>
+                  </li>
+
+                  <hr class="my-2">
+
+                  <li class="nav-item mb-4">
+                    <a href="" class="nav-link text-secondary">
+                        <i class="fa-solid fa-right-from-bracket pe-2"></i>
+                      Logout
+                    </a>
+                  </li>
+
+              </ul>
+            </div>
+         </aside>
+
+      </div> <!--app wrapper ends here-->
+    </div>  <!--main page ends here-->
 
     <!-- ✅ Mobile Bottom Footer Nav -->
       <div class="mobile-footer d-lg-none fixed-bottom bg-white shadow-lg">
