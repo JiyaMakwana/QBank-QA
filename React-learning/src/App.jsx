@@ -6,8 +6,13 @@ import './App.css'
 // import Wrap from "./practice/warmup";
 // import Wrapper from "./practice/part2";
 import Counter from "./practice/Counter";
+import LoginForm from "./practice/LoginForm";
 
 function App() {
+  const storedEmail=localStorage.getItem("email");
+  const [loggedIn, setLoggedIn] = useState(storedEmail ? true:false);
+  const [email, setEmail] =useState(storedEmail || "");
+
   const [count, setCount]=useState(() => {
     const savedValue=localStorage.getItem("count");
     return savedValue ? Number(savedValue) : 0;
@@ -30,6 +35,18 @@ function App() {
     setCount(0);
     localStorage.setItem("count",0);
   }
+
+  const handleLoginSuccess = (userEmail) => {
+    localStorage.setItem("email",userEmail);
+    setEmail(userEmail);
+    setLoggedIn(true);
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("email");
+    setLoggedIn(false);
+    setEmail("");
+  }
   
   return (
     <div>
@@ -40,8 +57,21 @@ function App() {
         handleIncrement={handleIncrement}
         handleDecrement={handleDecrement}
       />
-
       <button onClick={handleReset}>Reset</button>
+
+      <div>
+        <h1>Login Page</h1>
+        {loggedIn ? (
+          <div>
+            <h2>Welcome, {email}</h2>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ):(
+          <LoginForm onLoginSuccess={handleLoginSuccess}/>
+        )}
+        
+      </div>
+
   </div>
   )
 }
