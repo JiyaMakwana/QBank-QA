@@ -7,52 +7,53 @@ import './App.css'
 // import Wrapper from "./practice/part2";
 import Counter from "./practice/Counter";
 import LoginForm from "./practice/LoginForm";
+import EffectWrapper from "./practice/Ueffect";
 
 function App() {
-  const storedEmail=localStorage.getItem("email");
-  const [loggedIn, setLoggedIn] = useState(storedEmail ? true:false);
-  const [email, setEmail] =useState(storedEmail || "");
+  // const storedEmail=localStorage.getItem("email");
+  // const [loggedIn, setLoggedIn] = useState(storedEmail ? true:false);
+  // const [email, setEmail] =useState(storedEmail || "");
 
-  const [count, setCount]=useState(() => {
-    const savedValue=localStorage.getItem("count");
-    return savedValue ? Number(savedValue) : 0;
-  });
+  // const [count, setCount]=useState(() => {
+  //   const savedValue=localStorage.getItem("count");
+  //   return savedValue ? Number(savedValue) : 0;
+  // });
 
-  const handleIncrement = () => {
-    let newValue=count + 1;
-    setCount(newValue);
-    localStorage.setItem("count",newValue);
-  }
-  const handleDecrement = () => {
-    if(count > 0) {
-      let newValue=count - 1;
-      setCount(newValue);
-      localStorage.setItem("count",newValue);
-    }
-  }
+  // const handleIncrement = () => {
+  //   let newValue=count + 1;
+  //   setCount(newValue);
+  //   localStorage.setItem("count",newValue);
+  // }
+  // const handleDecrement = () => {
+  //   if(count > 0) {
+  //     let newValue=count - 1;
+  //     setCount(newValue);
+  //     localStorage.setItem("count",newValue);
+  //   }
+  // }
 
-  const handleReset = () => {
-    setCount(0);
-    localStorage.setItem("count",0);
-  }
+  // const handleReset = () => {
+  //   setCount(0);
+  //   localStorage.setItem("count",0);
+  // }
 
-  const handleLoginSuccess = (userEmail) => {
-    localStorage.setItem("email",userEmail);
-    setEmail(userEmail);
-    setLoggedIn(true);
-  }
+  // const handleLoginSuccess = (userEmail) => {
+  //   localStorage.setItem("email",userEmail);
+  //   setEmail(userEmail);
+  //   setLoggedIn(true);
+  // }
 
-  const handleLogout = () => {
-    localStorage.removeItem("email");
-    setLoggedIn(false);
-    setEmail("");
-  }
+  // const handleLogout = () => {
+  //   localStorage.removeItem("email");
+  //   setLoggedIn(false);
+  //   setEmail("");
+  // }
   
   return (
     <div>
       {/* <Layout/> */}
       {/* <Wrap/> */}
-      <Counter 
+      {/* <Counter 
         count={count}
         handleIncrement={handleIncrement}
         handleDecrement={handleDecrement}
@@ -70,7 +71,9 @@ function App() {
           <LoginForm onLoginSuccess={handleLoginSuccess}/>
         )}
         
-      </div>
+      </div> */}
+
+      <EffectWrapper/>
 
   </div>
   )
