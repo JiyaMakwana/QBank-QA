@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<canvas id="heartbeatChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+  const ctx = document.getElementById("heartbeatChart");
+
+  const data = {
+    labels: [],
+    datasets: [{
+      data: [],
+      borderColor: "#28a745",
+      borderWidth: 2,
+      tension: 0.3,
+      pointRadius: 0
+    }]
+  };
+
+  const heartbeatChart = new Chart(ctx, {
+    type: "line",
+    data: data,
+    options: {
+      responsive: true,
+      animation: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { display: false },
+        y: {
+          min: 0,
+          max: 100,
+          grid: { display: false }
+        }
+      }
+    }
+  });
+
+  // Generate heartbeat pattern
+  function generateHeartbeat() {
+    const base = 50;
+    const spike = Math.random() > 0.85 ? 95 : base + Math.random() * 10;
+    return spike;
+  }
+
+  // Update graph continuously
+  setInterval(() => {
+    if (data.labels.length > 40) {
+      data.labels.shift();
+      data.datasets[0].data.shift();
+    }
+
+    data.labels.push("");
+    data.datasets[0].data.push(generateHeartbeat());
+
+    heartbeatChart.update();
+  }, 120);
+});
+</script>
+</body>
+</html>
