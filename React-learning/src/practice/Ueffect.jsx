@@ -164,6 +164,68 @@ function DynamicFetch() {
         </>
     )
 }
+// fetch only when button click
+function ControlledFetch() {
+    const [load, setLoad] = useState(false); //switch to trigger useEffect
+    const [error,setError]= useState(null);
+    const [loading,setLoading]= useState(false); //is api currently fetching?
+    const [users,setUsers] =useState([]);
+
+    useEffect(() => {
+        if(!load) return; //prevent auto run on mount
+        const fetchUsers= async() => {
+            try {
+                    setLoading(true);
+                    setError(null);
+
+                    const res=await fetch("https://jsonplaceholder.typicode.com/users");
+
+                    if(!res.ok) {
+                        throw new Error("Something Went Wrong")
+                    }
+
+                    const data=await res.json();
+                    setUsers(data);
+
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+                setLoad(false);
+            }
+        };
+
+        fetchUsers();
+    },[load]);
+
+    {if(loading) return <p style={{color:"blue"}}>Loading...</p>}
+    {if(error) return <p style={{color:"red"}}>{error}</p>}
+
+    return (
+        <div>
+            <button onClick={() =>setLoad(true)}>Load Users</button>
+
+            {users.map((user) => (
+                <p key={user.id}>{user.name}</p>
+            ))}
+        </div>
+    )   
+}
+
+function CategorySwitcher() {
+    const [type, setType] =useState("posts");
+    const [data,setData]=useState([]);
+    const [error,setError]=useState(null);
+    const [loading,isLoading]=useState(false);
+
+    useEffect(() => {
+        const fetchType= async() => {
+
+        }
+
+        fetchType();
+    },[type])
+}
 
 function EffectWrapper() {
     return (
@@ -171,7 +233,8 @@ function EffectWrapper() {
             {/* <FetchUser/>
             <FetchPost/>
             <CounterEffect/> */}
-            <DynamicFetch/>
+            {/* <DynamicFetch/> */}
+            <ControlledFetch/>
         </>
     )
 }
