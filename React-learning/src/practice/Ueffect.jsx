@@ -214,17 +214,50 @@ function ControlledFetch() {
 
 function CategorySwitcher() {
     const [type, setType] =useState("posts");
-    const [data,setData]=useState([]);
+    const [datas,setData]=useState([]);
     const [error,setError]=useState(null);
-    const [loading,isLoading]=useState(false);
+    const [loading,setLoading]=useState(false);
 
     useEffect(() => {
         const fetchType= async() => {
+            try {
+                setLoading(true);
+                setError(null);
+                setData([]);
 
+                const res=await fetch(`https://jsonplaceholder.typicode.com/${type}`);
+
+                if(!res.ok) {
+                    throw new Error("Something went Wrong");
+                }
+
+                const data=await res.json();
+                setData(data);
+        
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
         }
 
         fetchType();
-    },[type])
+    },[type]);
+
+    {if(loading) return <p style={{color:"blue"}}>Loading...</p>}
+    {if(error) return <p style={{color:"blue"}}>{error}</p>}
+
+    return (
+        <>
+            <button onClick={() => setType("posts")}>Posts</button>
+            <button onClick={() => setType("users")}>Users</button>
+            <button onClick={() => setType("comments")}>Comments</button>
+
+            {datas.map((data) => (
+                <p key={data.id}>{JSON.stringify(data, null, 2)}</p>
+            ))}
+        </>
+    )
 }
 
 function EffectWrapper() {
@@ -234,7 +267,8 @@ function EffectWrapper() {
             <FetchPost/>
             <CounterEffect/> */}
             {/* <DynamicFetch/> */}
-            <ControlledFetch/>
+            {/* <ControlledFetch/> */}
+            <CategorySwitcher/>
         </>
     )
 }
