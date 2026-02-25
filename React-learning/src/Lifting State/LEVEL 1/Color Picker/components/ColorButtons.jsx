@@ -22,7 +22,7 @@ function ColorButtons({onSelectColor}) {
                 Green
             </button>
         </div>
-    )
+    );
 }
 
 export default ColorButtons;
