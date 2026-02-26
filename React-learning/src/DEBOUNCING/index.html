@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Click Me Fast</button>
+    
+    <script>
+        const button=document.getElementById("btn");
+
+        function debounce(func,delay) {
+            let timer;
+            
+            return function() {
+                clearTimeout(timer);
+                
+                timer=setTimeout(()=>{ 
+                    func();
+                },delay)
+            } 
+        }
+
+        function handleClick() {
+            button.innerText="Debounced";
+        }
+        const debounceClick=debounce(handleClick,1000)
+
+        button.addEventListener("click",()=>{
+            debounceClick();
+        })
+    </script>
+</body>
+</html>
