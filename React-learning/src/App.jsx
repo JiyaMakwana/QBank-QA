@@ -8,6 +8,7 @@ import LivePreview from "./Lifting State/LEVEL 1/Uname Live Preview/LivePreview"
 import ColorPage from "./Lifting State/LEVEL 1/Color Picker/ColorPage";
 import ParentShowHide from "./Lifting State/LEVEL 1/Show Hide/ParentShowHide";
 import UserList from "./MOCKING API/components/UserList";
+import ProductList from "./MOCKING API/components/ProductList";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <ColorPage/> */}
       {/* <ParentShowHide/> */}
       <UserList/>
+      <ProductList/>
     </>
   )
 }
